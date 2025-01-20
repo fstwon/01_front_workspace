@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transform 복습</title>
+  <style>
+    .wrap {
+      display: flex;
+      align-items: center;
+      border: 3px dotted yellow;
+    }
+    .animation-item {
+      width: 200px;
+      height: 200px;
+      border: 3px solid darkred;
+      border-radius: 40%;
+      margin: 20px;
+      animation: animation 1000ms infinite;
+    }
+    @keyframes animation {
+      0% {
+        transform: scale(0deg);
+      }
+      50% {
+        background-color: darkred;
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="animation-item"></div>
+    <div class="animation-item"></div>
+    <div class="animation-item"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오류 페이지</title>
+
+    <style>
+        /* 결과 화면으로 표시될 수 있도록 스타일 추가 */
+
+        .wrap {
+          height: 100vh; /* vh : 뷰포트 기준 높이 비율 단위 */
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        #icon-emark {
+            border-radius: 50px;
+
+            padding: 10px;
+            width: 30px;
+            height: 30px;
+
+            text-align: center;
+            line-height: 30px;
+
+            font-weight: 900;
+            font-size: 25px;
+
+            /* 아이콘 스타일 */
+            color: red;
+            border: 2px solid;
+            box-shadow: 0 0 15px;
+            text-shadow: 0 0 5px;
+        }
+
+        #btn-back {
+            width: 200px;
+
+            padding: 10px;
+            margin: 10px;
+
+            /* 버튼 스타일 */
+            border: none;
+            border-radius: 8px;
+            background-color: #090909;
+            color: #f4f4f4;
+            box-sizing: border-box;
+        }
+        /* 버튼 호버 스타일 */
+        #btn-back:hover {
+          cursor: pointer;
+          background-color: #242424;
+        }
+        #btn-back:active {
+          background-color: #535252;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <span id="icon-emark">!</span>
+        <h3>죄송합니다. 페이지를 찾을 수 없습니다.</h3>
+        <p>잘못된 접근입니다. 다시 시도해주세요.</p>
+        <button id="btn-back">이전으로</button>
+    </div>
+</body>
+</html>

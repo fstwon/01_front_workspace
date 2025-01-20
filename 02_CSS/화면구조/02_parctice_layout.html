@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice layout</title>
+  <style>
+    div {
+      border: 1px solid darkgrey;
+      box-sizing: border-box;
+    }
+    .wrap {
+      width: 1000px; 
+      height: 800px;
+      min-width: 800px;
+      min-height: 500px;
+      margin: auto;
+    }
+    .wrap > div {
+      width: 100%;
+    }
+    #header, #footer {
+      height: 20%;
+    }
+    #content {
+      display: flex;
+      height: 60%; 
+    }
+    /* #content1, #content2, #content3 {} */
+    #content > div {
+      height: 100%;
+    }
+    #content1, #content3 {
+      width: 20%;
+    }
+    #content2 {
+      width: 60%;
+    }
+    /* 
+      #content1, #content3 {
+        width: 200px;
+      }
+      #content2 {
+        width: calc(100% - 400px);
+      }
+      * => 전체 크기 100% 에서 고정 값을 제외한 크기를 계산해서 적용
+    */
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- <header></header> -->
+    <div id="header"></div>
+    <!-- <main></main> -->
+    <div id="content">
+      <!-- <aside></aside> -->
+      <div id="content1"></div>
+      <div id="content2"></div>
+      <div id="content3"></div>
+    </div>
+    <div id="footer"></div>
+  </div>
+</body>
+</html>

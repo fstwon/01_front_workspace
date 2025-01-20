@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS- layout style 03</title>
+  <style>
+    .container {
+      border: 3px solid darkblue;
+      display: flex; /* 하위 요소의 배치를 설정할 수 있음 */
+      flex-direction: row; /* 기본 값: row */
+      /* 
+        flex-direction: row(수평) | row-reverse(수평 반전) | column(수직) | column-reverse(수직 반전)
+        => 자식 요소들을 정렬할 때 주축을 어떤 방향으로 할 것인지에 대한 설정
+      */
+    }
+    .flex-item {
+      font-size: 30px;
+      padding: 20px;
+      border: 1px solid lightblue;
+      text-align: center;
+      width: 100px;
+    }
+
+    .item1 {
+      background-color: darkred;
+    }
+    .item2 {
+      background-color: darkgreen;
+    }
+    .item3 {
+      background-color: darkblue;
+    }
+    .item4 {
+      background-color: darkorange;
+    }
+    .item5 {
+      background-color: darkviolet;
+    }
+    .item6 {
+      background-color: darkslategrey;
+    }
+    .container2 {
+      border: 3px solid darkred;
+      display: flex;
+      flex-wrap: wrap;
+      /* 
+        flex-wrap: no-wrap | wrap | wrap-reverse;
+        flex item들이 브라우저 뷰 포트보다 밖으로 나가는 경우 
+        다음 줄로 넘겨 뷰 포트 안으로 들어오게하는 속성
+      */
+    }
+    .flex-item2 {
+      font-size: 30px;
+      padding: 20px;
+      width: 100px;
+      border: 1px solid lightblue;
+    }
+
+    .container3 {
+      border: 3px solid darkgreen;
+      height: 800px;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+      /* 주축 정렬을 어떻게 할 것인지 설정 */
+      align-items: flex-start;
+      /* 교차축 정렬을 어떻게 할 것인지 설정 */
+    }
+    .flex-item3 {
+      font-size: 50px;
+      border: 1px solid lightblue;
+      padding: 25px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>flex 레이아웃</h1>
+  <p>
+    웹 페이지에서 레이아웃을 효율적으로 구성하기 위한 방법 
+    <br>
+    flexbox를 사용하면 요소들을 부모 요소(컨테이너) 내에서 유연하게 정렬하고 배치할 수 있음
+  </p>
+
+  <!-- .container>.flex-item.item${ITEM$}*3 -->
+  <div class="container">
+    <div class="flex-item item1" style="flex: 2;">ITEM1</div>
+    <div class="flex-item item2" style="flex: 1;">ITEM2</div>
+    <div class="flex-item item3">ITEM3</div>
+  </div>
+
+  <!-- .container2>.flex-item2.item${ITEM$}*6 -->
+  <div class="container2">
+    <div class="flex-item2 item1">ITEM1</div>
+    <div class="flex-item2 item2">ITEM2</div>
+    <div class="flex-item2 item3">ITEM3</div>
+    <div class="flex-item2 item4">ITEM4</div>
+    <div class="flex-item2 item5">ITEM5</div>
+    <div class="flex-item2 item6">ITEM6</div>
+  </div>
+  <!-- .container3>.flex-item3.item${ITEM$}*3 -->
+  <div class="container3">
+    <div class="flex-item3 item1">ITEM1</div>
+    <div class="flex-item3 item2">ITEM2</div>
+    <div class="flex-item3 item3">ITEM3</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header layout - search bar</title>
+  <style>
+    div, form, input {
+      border: 1px solid gray;
+      box-sizing: border-box;
+    }
+    #header {
+      position: relative;
+      width: 600px;
+      height: 150px;
+    }
+    #search-form {
+      /* position으로 content 가운데 정렬, margin: auto 필수 */
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+
+      width: 80%;
+      height: 20%;
+    }
+    #search-form > input {
+      height: 100%;
+      float: left;
+    }
+    #search-form > input:nth-child(1) {
+      width: 80%;
+    }
+    #search-form > input:nth-child(2) {
+      width: 20%;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <form action="search" id="search-form">
+      <input type="text" name="keyword">
+      <input type="submit" value="검색">
+    </form>
+  </div>
+</body>
+</html>

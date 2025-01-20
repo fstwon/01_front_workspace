@@ -1,0 +1,27 @@
+/* body { background-color: pink; } */
+
+/***** 속성 선택자 *******************/
+/* div 요소 중 name 속성 값이 "name1"와 일치하는 요소 */
+div[name=name1] { background-color: tomato; }
+
+/* div 요소 중 name 속성 값에 "name1"이 포함되어 있는 요소 (전체단어) */
+div[name~=name1] { background-color: aquamarine; }
+
+/* div 요소 중 class 속성 값이 "class"로 시작하는 요소 */
+div[class|=class] { background-color: darkmagenta; }
+
+/* div 요소 중 name 속성 값이 "na"로 시작하는 요소 */
+div[name^=na] { background-color: cornflowerblue; }
+
+/* div 요소 중 class 속성 값이 "ss"로 끝나는 요소 */
+div[class$=ss] { background-color: violet; }
+
+/* div 요소 중 class 속성 값에 "i"가 포함된 요소 */
+div[class*=i] { background-color: palegreen; color: red;}
+
+/* Quiz */
+/* 
+    class 속성 값이 "div-class"인 요소 중에 
+        name 속성 값에 "name3"가 포함된 요소의 배경색 변경
+*/
+.div-class[name~=name3] { background-color: yellow;}

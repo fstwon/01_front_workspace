@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>signup page</title>
+  <link rel="stylesheet" href="./sign_style.css">
+
+</head>
+<body>
+  <!-- signin -->
+  <div class="wrap">
+    <!-- box layout -->
+    <div class="sign-box-container" >
+      <!-- title -->
+      <h2 class="sign-label">로그인</h2>
+      <form id="sign-in-form" class="sign-form" action="login" method="post">
+        <!-- input -->
+        <label for="userMail" class="input-label" >
+          이메일
+        </label>
+        <input type="e-mail" name="userMail" id="userMail" class="sign-form-input" required>
+        <label for="userPwd" class="input-label">
+          비밀번호
+        </label>
+        <input type="password" name="userPwd" id="userPwd" class="sign-form-input" required>
+        <!-- button -->
+        <button class="sign-form-button" type="submit">로그인</button>
+      </form>
+      <!-- signup link -->
+      <div id="sign-link-wrap">
+        <a id="sign-link" href="./01_250109_page_signup.html">회원가입</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 

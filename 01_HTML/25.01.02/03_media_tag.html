@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Media tag</title>
+</head>
+<body>
+  <!-- 이미지 태그, img -->
+  <h2>이미지 태그: img</h2>
+  <!-- 
+    <img 
+      src="표시하고자 하는 이미지 경로" 
+      alt="이미지 설명, 이미지가 표시되지 않을 경우 안내" 
+      width height, 단위: px 또는 %
+    />
+  -->
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="100" />
+  <img src="https://img.freepik.com/free-photo/new-year-2025-bokeh-lights-background_1419-3373.jpg?t=st=1735796415~exp=1735800015~hmac=3973cbd44a7437d2d41f0fb749b10dfd32714312e421e41492884e51ddd2aa34&w=1380" alt="HappyNewYear2025.jpg" width="100" />
+  <h3>* alt 속성: 이미지 설명</h3>
+  <p>
+    - 이미지 경로가 잘못되었을 경우 대체할 텍스트 
+    <br>
+    - 시각 장애인들을 위한 스크린 리더에서 이미지에 대한 설명을 읽어줄 수 있음
+
+  </p>
+  <img src="2025.jpg" alt="찾을 수 없음" width="100" />
+
+  <h3>* width, height 속성</h3>
+  <p>
+    이미지의 가로 (width), 세로 (height) 길이 조정 가능
+    <br>
+    고정길이(px), 가변길이(%) 지정 => 기본값: px
+  </p>
+
+  <h4>고정 길이(px), 기본값(단위)</h4>
+  <p>화면 크기가 변경되어도 이미지의 크기는 고정(변동 없음)</p>
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="200px" height="150" />
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="200px" height="100" />
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="150px" height="150" />
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="100px" height="100" />
+
+  <h4>가변 길이(%)</h4>
+  <p>
+    화면 크기에 따라 이미지의 크기가 변경
+    <br>
+    부모 요소에 따라서도 이미지 크기 변경 
+  </p>
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="10%" />
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="15%" />
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="20%" />
+  <img src="./resources/2025.jpg" alt="HappyNewYear2025.jpg" width="25%" />
+
+  <hr>
+
+  <!-- 오디오 태그 -->
+  <h2>오디오 태그: audio</h2>
+  <!-- 
+    <audio 
+      src="오디오 파일 경로" 
+      controls autoplay loop muted
+    ></audio>
+
+    - controls: 재생 도구 출력 여부
+    - autoplay: 자동 재생 여부 => 동작되지 않음
+    - loop    : 반복 재생
+    - muted   : 음소거 설정
+
+  -->
+  <audio src="./resources/inner_peace.mp3" controls loop muted ></audio>
+
+  <!-- 비디오 태그 -->
+  <h2>비디오 태그: video</h2>
+  <!--  
+    <video 
+      src="비디오 파일 경로"
+      controls autoplay loop muted
+
+      width, height
+      poster
+    ></video>
+  -->
+  <video 
+    src="./resources/sample.mp4" 
+    controls loop autoplay muted
+    width="300" height="400"
+    poster="resources/2025.jpg"
+  ></video>
+</body>
+</html>

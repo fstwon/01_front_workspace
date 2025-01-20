@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Select book category</title>
+		<script
+			async
+			src="../js/selectCategory.js"
+		></script>
+		<link
+			rel="stylesheet"
+			href="../css/selectCategory.css"
+		/>
+	</head>
+	<body>
+		<h1>Practice 1</h1>
+		<main id="main">
+			<fieldset>
+				<legend>취미</legend>
+				<table id="categoryList"></table>
+			</fieldset>
+			<button
+				id="selectBtn"
+				onclick="onClickSelect();"
+			>
+				카테고리 선택
+			</button>
+			<div id="selectedCategoryList"></div>
+		</main>
+	</body>
+</html>

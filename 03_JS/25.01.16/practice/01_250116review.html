@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>할 일 추가</title>
+  <style>
+    .wrap {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    .task-form {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .task-form input {
+      flex: 1;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    .task-form button {
+      padding: 5px 10px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .task-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>할 일 목록</h1>
+    <div class="task-form">
+      <input type="text" id="taskInput" placeholder="할 일을 입력하세요">
+      <button id="addTaskButton">추가</button>
+    </div>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    // TODO: 추가 버튼 클릭 이벤트 핸들러 추가 : 표준 이벤트 방식 사용
+    /*
+      * 추가 버튼 클릭 시 수행할 내용 *
+
+      입력된 할 일 정보를 확인하여 값이 없을 경우 "할 일을 입력하세요!" 알림창 표시
+
+      값이 있을 경우 ul#taskList 요소 영역에 아래와 같은 노드 추가
+
+        <li class="task-item">
+          <span>{입력된값}</span>
+          <button>삭제</button>
+        </li>
+
+        * 요소노드(Element) : 태그 자체
+        * 텍스트노드(TextNode) : 내용 부분
+        * 요소객체.className : 태그에서의 class 속성
+
+      그 후, 할 일을 입력하는 요소를 초기화 (''으로 변경)
+    */
+    const addButtonEl = document.getElementById('addTaskButton');
+    addButtonEl.addEventListener('click', function() {
+      const inputEl = document.getElementById('taskInput');
+      if(inputEl.value === '') {
+        alert('할 일을 입력하세요!');
+      } else {
+        // ul 요소 접근
+        const ulEl = document.getElementById('taskList');
+
+        // li 요소 생성
+        const liEl = document.createElement('li');
+        // li className 설정
+        liEl.className = 'task-item';
+
+        // span 요소 생성
+        const liSpan = document.createElement('span');
+
+        // 삭제 버튼 생성
+        const delBtn = document.createElement('button');
+        // 삭제 버튼 텍스트 노드 생성
+        const delBtnTextNode = document.createTextNode('삭제');
+        // 삭제 버튼 텍스트 노드 삭제 버튼에 append
+        delBtn.appendChild(delBtnTextNode);
+        
+        // li 텍스트 노드 생성
+        const textNode = document.createTextNode(inputEl.value);
+        // 텍스트 노드 span 요소에 append
+        liSpan.appendChild(textNode);
+
+        // span 요소 li 요소에 append
+        liEl.appendChild(liSpan);
+        // li 요소에 삭제 버튼 append
+        liEl.appendChild(delBtn);
+
+        // li 요소 ul 요소에 append
+        ulEl.appendChild(liEl);
+
+        // input value 빈 문자열로 초기화
+        inputEl.value = '';
+        
+        delBtn.addEventListener('click', function(event) {
+          // 해당 요소가 포함된 부모 li 요소 삭제
+          event.target.parentNode.remove();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

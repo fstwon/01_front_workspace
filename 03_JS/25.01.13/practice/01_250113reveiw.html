@@ -1,0 +1,36 @@
+
+- 사용자에게 출생년도를 입력받아 나이 출력하기
+(현재 연도를 상수로 저장하여 사용)
+* 나이계산 : 현재 연도 - 출생년도 + 1
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc Age</title>
+  <script async >
+    function calcAge() {
+      // 출생 연도 입력받기
+      const bornYear = window.prompt('출생 연도를 입력해주세요.');
+      // 현재 연도 가져오기
+      const thisYear = new Date().getFullYear();
+      // 나이 계산 하기
+      const thisAge = thisYear - (bornYear ? Number(bornYear) : thisYear) + 1;
+      // 계산한 나이 값 출력하기
+      const bornYearEl = document.getElementById('bornYear');
+      bornYearEl.innerHTML = `${thisYear} 기준 현재 나이는 ${thisAge}세 입니다.`;
+    }
+  </script>
+</head>
+<body>
+  <h1>나이 계산</h1>
+  <button onclick="calcAge()">출생 연도 입력하기</button>
+  <div id="desWayToCalcYear">
+    <h4>
+      * 나이계산 : 현재 연도 - 출생년도 + 1
+    </h4>
+  </div>
+  <p id="bornYear">
+  </p>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS - Array</title>
+  <style>
+    .area {
+      width: 300px;
+      height: 300px;
+      border: 1px solid gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>배열</h1>
+  <p>
+    * 자바스크립트(js)에서는 변수 선언 시 별도의 자료형 지정 없이 
+    어떤 자료형이든 배열에 저장할 수 있음
+    <br>
+    따라서, 크기(길이)의 제약이 없음 ( => 자바 컬렉션과 유사)
+  </p>
+  <button onclick="test1();">테스트1</button>
+  <div class="area" id="area1"></div>
+  <script>
+    function test1() {
+      // 배열 선언 및 초기화
+      let arr = ['아이유', '서울', 20, true, [10, 20, 30], {}];
+      // => 배열에는 자료형과 상관 없이 어떤 값이든 저장 가능
+      console.log(arr);
+      // '아이유' 값 콘솔 출력
+      console.log(arr[0]);
+      // 20 값 콘솔 출력
+      console.log(arr[2]);
+      // 30 값 콘솔 출력 => 다섯번째 위치의 배열로 접근
+      console.log(arr[4][2]);
+
+      // area1 요소 접근
+      const area = document.querySelector('#area1');
+
+      // area1 요소에 arr의 값들 출력
+      for(let i = 0; i < arr.length; i++) {
+        // arr[i]; // => arr[i] -> arr[0], arr[1], ... arr[arr.length - 1]
+        area.innerHTML += arr[i] + '<br>';
+      }
+    }
+  </script>
+  <hr>
+  <h3>배열의 선언</h3>
+  <p>
+    `[]` 사용 또는 new Array() 연산자를 사용하여 선언할 수 있음
+  </p>
+  <button onclick="test2();">테스트2</button>
+  <script>
+    function test2() {
+      // 배열 선언: new Array();
+      let arr1 = new Array();
+      let arr2 = new Array(3); // 배열 길이: 3
+      let arr3 = [];
+
+      arr1[0] = '딸기'; // arr1 배열의 0 인덱스 위치에 '딸기'라는 값을 저장
+      arr1[1] = '포도'; 
+      arr1[9] = '사과';
+
+      console.log(arr1); // ['딸기', '포도', empty * 7, '사과']
+      console.log(arr1[3]); // 3번 인덱스 조회 -> undefined 출력
+
+      arr2[0] = '햄버거'; 
+      arr2[1] = '피자';
+      arr2[2] = '파스타';
+      arr2[3] = '라자냐'; // 선언 시 지정했던 배열의 길이를 벗어나는 인덱스 위치에 값 할당
+      // => 배열 선언 시 길이를 지정하여도 길이를 벗어나는 인덱스 위치에 데이터를 추가해도 문제 없음
+
+      console.log(arr2);
+
+      let arr4 = new Array('아이유', '나훈아', '빅뱅', 'BTS');
+      let arr5 = ['아이유', '나훈아', '빅뱅', 'BTS'];
+      console.log(arr4);
+      console.log(arr5);
+    }
+  </script>
+
+  <hr>
+  <h2>* 배열 관련 함수(메소드)</h2>
+  <h3>1) 배열명.indexOf(찾고자하는 값);</h3>
+  <p>
+    배열에서 해당 값이 위치한 인덱스 반환
+    <br>
+    * 해당 값이 있으면 인덱스 (0 ~ )
+    <br>
+    * 해당 값이 없으면 -1 반환
+  </p>
+  <button onclick="findFruit();">과일 찾기</button>
+  <script>
+    function findFruit() {
+      let fruits = ['사과', '포도', '배', '딸기', '키위', '오렌지', '수박', '블루베리'];
+      
+      console.log(fruits.indexOf('키위')); // => 4
+      console.log(fruits.indexOf('꽃')); // => -1
+
+      // 사용자에게 '찾는 과일은 무엇입니까?' 질문과 함께 알림창 표시
+      const answer = window.prompt('찾는 과일은 무엇입니까?');
+      // 사용자가 입력한 값에 따라
+      const isFind = fruits.indexOf(answer);
+      if(isFind > -1) {
+        // 배열에 존재하면 "찾았습니다" 알림창 표시
+        window.alert("찾았습니다.");
+      } else {
+        // 배열에 존재하지 않으면 "찾지 못했습니다" 알림창 표시
+        window.alert("찾지 못했습니다.");
+      }
+    }
+  </script>
+  <hr>
+  <h3>2) 배열명.concat(배열, 배열, ...);</h3>
+  <p>
+    배열에 여러 개의 배열을 결합하고자 할 때 사용 
+    <br>
+    * 합쳐진 배열을 반환
+  </p>
+  <button onclick="concatTest();">배열 결합</button>
+  <div class="area" id="arae2"></div>
+  <script>
+    function concatTest() {
+      let arr1 = ['김밥', '부대찌개', '미역국'];
+      let arr2 = ['도보', '지하철', '버스', '비행기'];
+      // #area2인 요소 접근
+      const area2 = document.getElementById('area2');
+
+      // area2 요소에 array 내용 출력
+      area2.innerHTML = `arr1 : ${arr1} <br>`;
+      area2.innerHTML += `arr2 : ${arr2} <br>`;
+
+      // arr1과 arr2 배열 concat 후 area2 요소에 출력
+      area2.innerHTML = `concat : ${arr1.concat(arr2)} <br>`;
+      area2.innerHTML = `한번 더 : ${arr1.concat(arr2, [1, 2, 3], ['a', 'b', 'c'])} <br>`;
+      // => concat 사용 시 원본 배열에 영향을 주지 않음
+    }
+  </script>
+  <hr>
+  <h3>3) 배열명.reverse();</h3>
+  <p>
+    배열에 담긴 값들을 역순으로 바꿔주는 함수
+  </p>
+  <button onclick="reverseTest();">역순 확인</button>
+  <div class="area" id="area3"></div>
+  <script>
+    function reverseTest() {
+      let arr = [1, 2, 3, 4, 5];
+      const area3 = document.getElementById('area3');
+      area3.innerHTML = `원본 배열: ${arr} <br>`;
+      area3.innerHTML += `순서 변경: ${arr.reverse()} <br>`;
+      area3.innerHTML += `원본 -> ${arr}`;
+      // => 원본 배열을 변경
+      // reverse()를 사용하면 원본 배열의 순서도 변경
+    }
+  </script>
+  <hr>
+  <h3>4) 배열명.sort()</h3>
+  <p>
+    배열 내의 값을 오름차순/내림차순으로 정렬시키는 함수
+  </p>
+  <button onclick="sortTest();">정렬 확인</button>
+  <div class="area" id="area4"></div>
+  <script>
+    function sortTest() {
+      let arr = ['노승재', '임성준', '양환', '박민준', '정혜영', '김일현'];
+      const area4 = document.getElementById('area4');
+      area4.innerHTML = `arr: ${arr} <br>`;
+      area4.innerHTML += `정렬 후: ${arr.sort()} <br>`;
+      area4.innerHTML += `원본 배열: ${arr} <br>`;
+      // => 원본 배열 변경 
+
+      // 내림차순 정렬
+      area4.innerHTML += `내림 차순 정렬 후: ${arr.reverse()} <br>`;
+    }
+  </script>
+  <hr>
+  <h3>5) 배열에 값 추가/제거 - 1</h3>
+  <h4>* 추가: 배열명.push(추가할 값);</h4>
+  <p>
+    배열의 가장 마지막 인덱스 다음 인덱스에 값을 추가하고, 배열의 크기를 반환
+  </p>
+  <h4>* 제거: 배열명.pop();</h4>
+  <p>
+    배열의 가장 마지막 값을 제거하고, 그 값을 반환
+  </p>
+  <button onclick="inoutTest();">확인</button>
+  <div class="area" id="area5"></div>
+  <script>
+    function inoutTest() {
+      let arr = ['삼각동', '입정동', '인사동', '안국동'];
+      const area5 = document.getElementById('area5');
+      area5.innerHTML = `arr: ${arr} <br>`;
+      area5.innerHTML += `pop 메소드 호출: ${arr.pop()} <br>`;
+      area5.innerHTML += `push 메소드 호출: ${arr.push('행복동')} <br>`;
+      area5.innerHTML += `원본 배열 출력: ${arr} <br>`;
+      // => push, pop 메소드는 원본 배열 변경
+    }
+  </script>
+  <hr>
+  <h3>6) 배열에 값 추가/제거 - 2</h3>
+  <h4>* 추가: 배열명.unshift(추가할 값);</h4>
+  <p>
+    배열의 가장 첫 인덱스에 값을 추가하고 기존 배열의 값들을 한 인덱스씩 뒤로 옮김
+  </p>
+  <h4>* 제거: 배열명.shift();</h4>
+  <p>
+    배열의 가장 첫 인덱스 값을 제거하고 기존 배열의 값들을 한 인덱스씩 앞으로 옮김
+  </p>
+  <button onclick="inoutTest2()">확인</button>
+  <div class="area" id="area6"></div>
+  <script>
+    function inoutTest2() {
+      let arr = ['김태희', '김소연', '이병헌', '이정재', '정우성'];
+      const area6 = document.getElementById('area6');
+      area6.innerHTML = `arr: ${arr} <br>`;
+      area6.innerHTML += `shift 메소드 호출: ${arr.shift()} <br>`;
+      // area6.innerHTML += `unshift 메소드 호출: ${arr.unshift()} <br>`;
+      arr.unshift('김태리');
+      area6.innerHTML += `최종 배열 출력: ${arr} <br>`;
+      // => unshift, shift 메소드는 원본 배열을 변경
+    }
+  </script>
+  <hr>
+  <h3>7) 배열에서 추출하기</h3>
+  <h4>* 배열명.slice(시작인덱스, 끝인덱스);</h4>
+  <p>
+    배열에서 시작인덱스 위치부터 끝인덱스 전까지 배열의 값들을 추출
+  </p>
+  <h4>* 배열명.splice(시작인덱스, 제거할 개수[, 추가할 값])</h4>
+  <p>
+    배열의 시작 인덱스부터 제거할 개수의 수 만큼 제거(+ , 추가할 값이 있으면 값 추가)
+  </p>
+  <button onclick="sliceTest()">확인</button>
+  <div class="area" id="area7"></div>
+  <script>
+    function sliceTest() {
+      let arr = ['html', 'css', 'js', 'java', 'sql', 'python'];
+      const area7 = document.getElementById('area7');
+      area7.innerHTML = `원본 배열: ${arr} <br>`;
+      // * slice
+      let arr2 = arr.slice(3, 5); // 3, 4번 인덱스 위치의 데이터 추출
+      area7.innerHTML += `slice로 추출한 값: ${arr2} <br>`;
+      area7.innerHTML += `slice 추출 후 원본 배열: ${arr} <br>`;
+      // => 원본 배열을 변경하지 않음
+      
+      // * splice
+      let arr3 = arr.splice(0, 3, 'spring');
+      area7.innerHTML += `splice로 추출한 값: ${arr3} <br>`;
+      area7.innerHTML += `splice 추출 후 원본 배열: ${arr} <br>`;
+      // => 원본 배열 변경
+      // 데이터를 제거하고, 추가되는 값이 있으면 제거된 위치에 값 추가
+      
+
+    }
+  </script>
+  <hr>
+  <h3>8) 배열을 문자열로 변환하기</h3>
+  <h4>* 배열명.toString()</h4>
+  <h4>* 배열명.join([구분자])</h4>
+  <p>
+    배열의 각 인덱스에 담긴 값을 하나의 문자열로 반환해주는 함수
+  </p>
+  <button onclick="toStringTest();">변환</button>
+  <div class="area" id="area8"></div>
+  <script>
+    function toStringTest() {
+      let arr = ['저는', '오늘', '점심에', '김밥을', '먹었습니다.'];
+      const area8 = document.getElementById('area8');
+
+      area8.innerHTML = `원본 배열: ${arr} <br>`;
+      area8.innerHTML += `toSring 메소드 호출: ${arr.toString()} <br>`;
+      // => 객체를 출력할 때 객체.toString() 호출
+
+      area8.innerHTML += `join 메소드 호출: ${arr.join()} <br>`;
+      // => join 메소드는 구분자를 입력하지 않으면 ','를 사용하여 변환
+      area8.innerHTML += `'-'를 구분자로 join 메소드 호출: ${arr.join('-')} <br>`;
+      area8.innerHTML += `공백 ' '을 구분자로 join 메소드 호출: ${arr.join(' ')} <br>`;
+    }
+  </script>
+</body>
+</html>

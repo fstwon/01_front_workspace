@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input/Output data</title>
+  <style>
+    .area {
+      border: 1px solid gray;
+      width: 300px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트에서의 데이터 입/출력</h1>
+  <!-- 
+    * window  : 자바스크립트의 내장 객체로 브라우저 창이 열릴 때마다 하나씩 만들어지는 객체
+                브라우저 창 안에 존재하는 모든 요소들의 최상위 객체
+                생략 가능 => ex) window.alert() -> alert()
+
+    * document: 웹 문서마다 하나씩 만들어지는 객체
+                HTML 문서에 대한 정보를 가지고 있음
+  -->
+  <h3>데이터 출력 구문</h3>
+  <ol>
+    <li>[window.]alert('메세지 창을 통해 출력')</li>
+    <li>
+      [window.]console.log('개발자 도구의 콘솔 창에 출력')
+    </li>
+    <li>
+      document.write('브라우저 화면(viewport)에 출력')
+      화면을 출력 내용으로 전체 변경
+    </li>
+    <li>선택된요소.innerHTML | 선택된요소.innerText = '요소에 출력되는 내용'</li>
+  </ol>
+  <script>
+    // alert('곧 점심시간 입니다.');
+    // console.log('출력 되나요')
+  </script>
+  <button onclick="documentWrite();" >화면에 출력</button>
+  <script>
+    function documentWrite() {
+      // document.wirte('<b>document write</b> 출력 확인');
+      // => 출력할 문구에 HTML 태그가 포함된 경우 해석하여 출력
+      let table = "<table border='1'>"
+                  + "<tr>"
+                    + "<td>홍길동</td>"
+                    + "<td>40</td>"
+                  + "</tr>"
+                + "</table>";
+
+      document.wirte(table);
+    };
+  </script>
+
+  <br><br>
+
+  <h3>요소에 출력</h3>
+  <div class="area" id="area1">
+    자바스크립트에서 어떤 요소(element) 안에 값(content)을 가지고 와서 
+    <br>
+    변경하고자 할 때 <b>innerHTML, innerText</b>라는 속성에 접근
+    <br>
+    
+  </div>
+  <button onclick="elementTest();">확인</button>
+  <script>
+    function elementTest() {
+      let divEl = document.getElementById('area1');
+      console.log(divEl);
+      // 선택된 요소의 속성에 접근 (.을 사용하여 접근)
+      console.log(divEl.id); // id 속성에 접근
+      console.log(divEl.className); // class 속성에 접근
+      
+      console.log(divEl.innerHTML);
+      // => 요소의 content 영역에 작성된 내용을 html 포함하여 확인 가능 
+      console.log(divEl.innerText);
+      // => 요소의 content 영역에 작성된 내용을 텍스트만 확인 가능
+      
+      divEl.innerHTML = "<h4>innerHTML을 사용하여 내용 변경</h4>";
+      // => HTML 태그가 포함된 내용을 반영하고자 할 때 (HTML 태그 해석해서 반영)
+      divEl.innerText = "<h4>innerText를 사용하여 내용 변경</h4>";
+      // => 텍스트만 있는 내용을 반영하고자 할 때 (HTML 태그 해석하지 않고 텍스트로 노출)
+    };
+  </script>
+  <br><br>
+
+  <button onclick="test1();">innerHTML 조회</button>
+  <button onclick="test2();">innerText 조회</button>
+
+  <br>
+
+  <button onclick="test3();">innerHTML 적용</button>
+  <button onclick="test4();">innerText 적용</button>
+
+  <br><br>
+
+  <div id="result" class="area">
+    <h2>결과 확인 테스트</h2>
+    <p>
+      innerHTML, innerText 
+    </p>
+  </div>
+
+  <script>
+    let resultEl = document.getElementById('result');
+
+    function test1() {
+      alert(resultEl.innerHTML);
+    };
+    function test2() {
+      alert(resultEl.innerText);
+    };
+    function test3() {
+      resultEl.innerHTML = "<mark>innerHTML의 내용 변경 완료</mark>";
+    };
+    function test4() {
+      resultEl.innerText = "<mark>innerText의 내용 변경 완료</mark>";
+    };
+  </script>
+  <hr>
+  <h3>데이터를 입력받는 구문(변수에 저장)</h3>
+  <ol>
+    <li>변수 = [window.]confirm("질문");</li>
+    <li>변수 = [window.]prompt("질문");</li>
+    <li>변수 = 선택된요소.속성; (id, className, innerText, ...)</li>
+    <li>변수 = 선택한input요소.value;</li>
+  </ol>
+
+  <h4>[window.]confirm("질문")</h4>
+  <p>
+    confirm 호출 시 "질문", 확인/취소 버튼이 존재하는 브라우저 메세지 창이 열림
+    <br>
+    확인 버튼 클릭 시 true, 취소 버튼 클릭 시 false를 반환 
+  </p>
+  <button onclick="confirmTest('야 자냐?');">클릭</button>
+  <div id="area2" class="area">
+    
+  </div>
+  <script>
+    function confirmTest(confirmQuestion) {
+      const answer = confirm(confirmQuestion);
+      const area2El = document.getElementById('area2');
+      console.log(answer);
+      if(answer) {
+        area2El.innerHTML = "예!!";
+      } else {
+        area2El.innerHTML = "아니요!!";
+      };
+      return answer;
+    };
+  </script>
+  <br>
+  <h4>[window.]prompt("질문")</h4>
+  <p>
+    prompt 호출 시 "질문", 입력 받을 수 있는 "텍스트 상자", 확인/취소 버튼이 존재하는 브라우저 메세지 창이 열림
+    <br>
+    확인 버튼 클릭 시 텍스트 상자에 입력 값을 반환
+    <br>
+    취소 버튼 클릭 시 null 값을 반환 (* 텍스트 상자에 값이 입력되어 있어도 취소 버튼 클릭 시에도 동일)
+  </p>
+  <button onclick="promptTest('니 내 누군지 아니?')">클릭</button>
+  <div id="area3" class="area">
+    
+  </div>
+  <script>
+    function promptTest(promptQuestion) {
+      const answer = prompt(promptQuestion);
+      const area3El = document.getElementById('area3');
+      const answer2 = prompt('마 몇살이고?');
+      area3El.innerHTML = `입력된 정보: 이름: ${answer || "내 하얼빈의 장첸이야"} 나이: ${answer2 || "내 나이가 어때서?"}`;
+
+      
+      return answer;
+    }
+  </script>
+  <h4>선택한 input 요소의 값(content) 접근</h4>
+  <p>
+    선택한요소.value
+  </p>
+  <label for="userId">아이디</label>
+  <input type="text" name="userId" id="userId">
+  <label for="userPwd">비밀번호</label>
+  <input type="password" name="userPwd" id="userPwd">
+  <br>
+  <input type="button" value="로그인" onclick="loginTest();">
+  <input type="button" value="초기화" onclick="resetTest();">
+  <br>
+  <label for="area4">입력 아이디: </label>
+  <input type="text" name="area" id="area4">
+  <label for="area5">입력 비밀번호: </label>
+  <input type="text" name="area" id="area5">
+  <script>
+    function loginTest() {
+      const userIdEl = document.getElementById('userId');
+      const userPwdEl = document.getElementById('userPwd');
+      const area4El = document.getElementById('area4');
+      const area5El = document.getElementById('area5');
+      
+      area4El.value = `${userIdEl.value || "입력하지 않았습니다."}`;
+      area5El.value = `${userPwdEl.value || "입력하지 않았습니다."}`;
+      
+      userIdEl.value = "";
+      userPwdEl.value = "";
+    };
+    function resetTest() {
+      const userIdEl = document.getElementById('userId');
+      const userPwdEl = document.getElementById('userPwd');
+      const area4El = document.getElementById('area4');
+      const area5El = document.getElementById('area5');
+
+      userIdEl.value = "";
+      userPwdEl.value = "";
+      area4El.value = "";
+      area5El.value = "";
+    }
+  </script>
+</body>
+</html>

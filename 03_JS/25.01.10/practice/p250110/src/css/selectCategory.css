@@ -1,0 +1,21 @@
+#main > fieldset {
+	display: flex;
+}
+
+#main > fieldset > #selectAllWrap {
+	display: table;
+}
+
+#categoryList {
+	border-collapse: collapse;
+}
+
+#selectBtn {
+	margin-top: 20px;
+}
+
+#selectedCategoryList {
+	width: 100%;
+	height: 300px;
+	border: 1px solid red;
+}

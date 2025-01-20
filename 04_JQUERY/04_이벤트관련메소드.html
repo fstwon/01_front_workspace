@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <title>jQuery - 이벤트 관련 메소드</title>
+  <style>
+    .area {
+      border: 1px solid gray;
+      height: 500px;
+    }
+    .qa_box div {
+      background-color: green;
+      border: 1px solid yellow;
+      width: 300px;
+      /* height: 5px; */
+      line-height: 30px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .qa_box p {
+      border: 1px solid yellow;
+      width: 300px;
+      height: 100px;
+      border-radius: 10px;
+      margin-top: 5px;
+      padding: 10px;
+      box-sizing: border-box;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h3>이벤트 관련 메소드</h3>
+  <div class="area" id="area1">
+    <h6>이 곳을 클릭하면 h6 요소 추가</h6>
+    <div>
+      <h6>안녕하세요</h6>
+      <h5>반갑습니다</h5>
+    </div>
+  </div>
+  <script>
+    $(function() {
+      // * 이벤트 메소드
+      // click
+      // $('#area1 > h6').click(function() {
+      //   $('#area1').append('<h6>클릭 이벤트로 추가된 요소</h6>');
+      // });
+      // 동적으로 추가된 요소에는 이벤트 적용 안됨
+      // * on 메소드
+      // $('#area1 > h6').on('click', function() {
+      //   $('#area1').append('<h6>on 메소드의 click 이벤트로 추가된 요소</h6>');
+      // });
+      // on 메소드도 동적으로 추가된 요소에는 이벤트 적용 안됨
+
+      // * 부모 요소로부터 on 메소드 사용
+      $('#area1').on('click', '> h6', function() {
+        $('#area1').append('<h6>on 메소드의 click 이벤트와 target 매개변수로 추가된 요소</h6>');
+      });
+      // => 동적으로 추가된 요소에도 이벤트 적용 
+    });
+  </script>
+  <hr>
+  <h3>키보드 관련 이벤트</h3>
+  <pre>
+    - keydown | keypress : key를 누를 때 발생하는 이벤트
+      > keydown: 모든 key에 발생
+      > keypress: function key(Fn), 기능 관련 key, 한글 제외한 key에 발생
+
+
+    - keyup: key 눌렀다 뗀 후 발생하는 이벤트
+  </pre>
+  <em>150자 내외 작성하시오.</em>
+  <br>
+  <textarea 
+    id="content"
+    style="resize: none;"
+    cols="30"
+    rows="10"
+    maxlength="150"
+  ></textarea>
+  <span id="count">0</span>/150
+  <script>
+    $(function() {
+      const textAreaContent = $('#content');
+      textAreaContent.on('keyup', function() {
+        // $('#count').html(event.target.value.length);
+        let len = $(this).val().length;
+        if(len >= 150) {
+          alert('더 이상 입력할 수 없습니다.');
+          const content = $(this).val().slice(0, 150);
+          $(this).val(content);
+          leg = content.length;
+        }
+        $('#count').text(len);
+
+      });
+    });
+  </script>
+  <hr>
+  <h3>* 효과 관련 메소드</h3>
+  <h4>fadeIn(), fadeOut(), fadeToggle()</h4>
+  <button id="btn-fdIn">
+    보기
+  </button>
+  <button id="btn-fdOut">
+    숨기기
+  </button>
+  <button id="btn-fdToggle">
+    토글
+  </button>
+  <br>
+  <img 
+    id="img01" 
+    width="300" 
+    src="https://i.pinimg.com/736x/44/e3/6d/44e36da9eb3789bb300bda0fd532b429.jpg" 
+    alt="little_penguin"
+  >
+  <script>
+    $(function() {
+      // 보기 버튼 클릭 이벤트
+      $('#btn-fdIn').on('click', function() {
+        $('#img01').fadeIn();
+      });
+
+      // 숨기기 버튼 클릭 이벤트
+      $('#btn-fdOut').on('click', function() {
+        $('#img01').fadeOut();
+      });
+
+      // 토글 버튼 클릭 이벤트
+      $('#btn-fdToggle').on('click', function() {
+        $('#img01').fadeToggle();
+      });
+    });
+  </script>
+
+  <br><br>
+
+  <h4>slideDown(), slideUp(), slideToggle()</h4>
+  <div class="qa_box">
+    <div>Q. 반품은 언제되나요?</div>
+    <p>A. 택배사의 사정에 따라 2 ~ 3일 소요됩니다.</p>
+
+    <div>Q. 반품은 언제되나요?</div>
+    <p>A. 택배사의 사정에 따라 2 ~ 3일 소요됩니다.</p>
+
+    <div>Q. 반품은 언제되나요?</div>
+    <p>A. 택배사의 사정에 따라 2 ~ 3일 소요됩니다.</p>
+
+    <div>Q. 반품은 언제되나요?</div>
+    <p>A. 택배사의 사정에 따라 2 ~ 3일 소요됩니다.</p>
+
+    <div>Q. 판매자와 연락이 되지 않습니다.</div>
+    <p>A. 문의량이 많아 대기가 필요합니다.</p>
+  </div>
+
+  <script>
+    $(function() {
+      $('.qa_box div').on('click', function() {
+        // .next() 선택된 요소의 다음 요소 선택
+        const $p = $(this).next();
+        if($p.css('display') === 'none') {
+          $p.slideDown();
+        } else {
+          $p.slideUp();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

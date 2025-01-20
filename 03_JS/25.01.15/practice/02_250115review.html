@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습 - 25/01/15 PM</title>
+
+    <style>
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .question-area {
+            border: 1px solid #655b50;
+            border-radius: 10px;
+            margin: 1.1em;
+            padding: 2em;
+            box-shadow: 0px 0px 10px;
+        }        
+
+        #result {
+            padding: 1.2em;
+            border: 2px solid seagreen; 
+            box-shadow: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="question-area">
+            <h2>나이 계산</h2>
+            <em>입력된 생년월일 정보를 사용하여 나이 계산</em>
+            <hr>
+            <label for="birthYear">출생년도:</label>
+            <input type="number" id="birthYear">
+            <br>
+            <label for="birthMonth">출생월: </label>
+            <input type="number" id="birthMonth">
+            <br>
+            <label for="birthDate">출생일: </label>
+            <input type="number" id="birthDate">
+            <hr>
+            <button onclick="getAge();">확인</button>
+            <br><br>
+
+            <div id="result">
+                <em>여기에 결과를 출력해주세요.</em>
+            </div>
+            <button onclick="stopInterval();">Stop Interval</button>
+        </div>
+    </div>
+    <script>
+      function getAge() {
+        const resultEm = document.querySelector('#result > em');
+
+        // 현재 날짜 정보 가져오기
+        const now = new Date();
+        const thisYear = now.getFullYear();
+        const thisMonth = now.getMonth() + 1;
+        const thisDate = now.getDate();
+        
+        // 출생 년도 가져오기
+        const birthYearInput = document.getElementById('birthYear');
+        const birthYear = birthYearInput.value === '' ? thisYear : birthYearInput.value;
+        
+        // 출생 월 가져오기
+        const birthMonthInput = document.getElementById('birthMonth');
+        const birthMonth = birthMonthInput.value === '' ? thisMonth : birthMonthInput.value ;
+        
+        // 출생 일 가져오기
+        const birthDateInput = document.getElementById('birthDate');
+        const birthDate = birthDateInput.value === '' ? thisDate : birthDateInput.value;
+
+        // 출생 Date 객체 가져오기
+        const birth = new Date(birthYear, birthMonth - 1, birthDate);
+
+        const thisAge = Math.round((now - birth)/(1 * 1000 * 60 * 60 * 24 * 365) + 1); 
+        resultEm.innerHTML = `올해 ${thisAge}살 입니다.`;
+
+        birthYearInput.value = "";
+        birthMonthInput.value = "";
+        birthDateInput.value = "";
+      }
+      // window.onload = function() {
+      // }
+      let intervalTimeout = -1;
+      // resultArea border color 변경
+      intervalTimeout = setInterval(function() {
+        const result = document.getElementById('result');
+        switch(result.style.borderColor) {
+          case '': return result.style.borderColor = 'seagreen';
+          case 'seagreen': return result.style.borderColor = 'yellow';
+          case 'yellow': return result.style.borderColor = 'skyblue';
+          case 'skyblue': return result.style.borderColor = 'seagreen';
+        };
+      }, 1000);
+      function stopInterval() {
+        clearInterval(intervalTimeout)
+      }
+    
+    </script>
+</body>
+</html>
